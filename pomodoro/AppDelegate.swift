@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -45,6 +45,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "pomodoro")
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            if let error = error as NSError? {
+                let errorAlert = UIAlertController(title: "Error opening storage, can't open", message: error.userInfo.description, preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+                
+                let window = UIWindow(frame: UIScreen.main.bounds)
+                let main = PDMainTabBarViewController()
+                window.rootViewController = main
+//                window.makeKeyAndVisible()
+                main.present(errorAlert, animated: true, completion: nil)
+                
+                fatalError("Error opening pomodoro container: error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
 
 }
 
