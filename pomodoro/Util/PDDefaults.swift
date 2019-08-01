@@ -31,7 +31,7 @@ class PDDefaults: UserDefaults {
     let defaults = UserDefaults.standard
     
     
-    func  registerDefaults () {
+    func registerDefaults () {
         defaults.register(defaults: [
             PDDefaultKeys.work.rawValue: 1500,
             PDDefaultKeys.shortBreak.rawValue: 300,
@@ -53,15 +53,9 @@ class PDDefaults: UserDefaults {
     func setLengthOfWork(value: Int) {
         defaults.set(value, forKey: PDDefaultKeys.work.rawValue)
     }
-    func setLengthOfShortBreak(value: Int) {
-        defaults.set(value, forKey: PDDefaultKeys.shortBreak.rawValue)
-    }
-    func setLengthOfLongBreak(value: Int) {
-        defaults.set(value, forKey: PDDefaultKeys.longBreak.rawValue)
-    }
-    func setDailyGoal(value: Int) {
-        defaults.set(value, forKey: PDDefaultKeys.dailyGoal.rawValue)
-    }
+
+
+
 
     func setTimerStatus(_ value: PDSessionStatus) {//这里的value要.rawvalue ??
         defaults.set(value.rawValue, forKey: PDDefaultKeys.sessionStatus.rawValue)
@@ -73,16 +67,36 @@ class PDDefaults: UserDefaults {
     func getWorkLength() -> Int{
         return defaults.integer(forKey: PDDefaultKeys.work.rawValue)
     }
+    
+    func setLengthOfShortBreak(value: Int) {
+        defaults.set(value, forKey: PDDefaultKeys.shortBreak.rawValue)
+    }
+    
     func getShortBreak() -> Int {
         return defaults.integer(forKey: PDDefaultKeys.shortBreak.rawValue)
     }
+    
+    func setLengthOfLongBreak(value: Int) {
+        defaults.set(value, forKey: PDDefaultKeys.longBreak.rawValue)
+    }
+    
     func getLongBreak() -> Int {
         return defaults.integer(forKey: PDDefaultKeys.longBreak.rawValue)
     }
+    
+    func setDailyGoal(value: Int) {
+        defaults.set(value, forKey: PDDefaultKeys.dailyGoal.rawValue)
+    }
+    
     func getDailyGoal() -> Int {
         return defaults.integer(forKey: PDDefaultKeys.dailyGoal.rawValue)
     }
     
-    
+    func setSubject(value: String) {
+        defaults.set(value, forKey: PDDefaultKeys.subject.rawValue)
+    }
+    func getSubjectName() -> String {
+        return defaults.string(forKey: PDDefaultKeys.subject.rawValue)!
+    }
 
 }

@@ -13,7 +13,7 @@ class PDProgressView: UIView {
     var progress: CGFloat = 0.0
     let lineWidth: CGFloat = 10
     var trackLayer: CAShapeLayer?
-
+    var timeService = PDTimerService()
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -47,7 +47,12 @@ class PDProgressView: UIView {
         self.trackLayer?.bounds = CGRect.init(x:0, y:0, width: self.frame.width, height: self.frame.height)
         self.trackLayer?.fillColor = UIColor.clear.cgColor
         self.trackLayer?.lineWidth = self.lineWidth
-        self.trackLayer?.strokeColor = UIColor.orange.cgColor
+        if timeService.timeChunks?[0].type == .work {
+            self.trackLayer?.strokeColor = UIColor.orange.cgColor
+        }else{
+            self.trackLayer?.strokeColor = UIColor.green.cgColor
+        }
+        
         self.trackLayer?.lineCap = CAShapeLayerLineCap.round
         self.trackLayer?.path = bezierPath.cgPath
         self.layer.addSublayer(self.trackLayer!)

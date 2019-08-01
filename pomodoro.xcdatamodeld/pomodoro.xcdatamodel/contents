@@ -4,11 +4,18 @@
         <attribute name="completedSession" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
+    <entity name="Session" representedClassName="Session" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="session" inverseEntity="Subject" syncable="YES"/>
+    </entity>
     <entity name="Subject" representedClassName="Subject" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="session" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="subject" inverseEntity="Session" syncable="YES"/>
     </entity>
     <elements>
         <element name="DailyGoal" positionX="-54" positionY="0" width="128" height="75"/>
-        <element name="Subject" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="Session" positionX="-54" positionY="9" width="128" height="90"/>
+        <element name="Subject" positionX="-63" positionY="-18" width="128" height="75"/>
     </elements>
 </model>
