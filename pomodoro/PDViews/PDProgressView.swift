@@ -14,8 +14,11 @@ class PDProgressView: UIView {
     let lineWidth: CGFloat = 10
     var trackLayer: CAShapeLayer?
     var timeService = PDTimerService()
+    var radius : CGFloat?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.radius = (UIScreen.main.bounds.width - 150 - lineWidth) / 2
         setup()
     }
     
@@ -26,7 +29,7 @@ class PDProgressView: UIView {
     func setProgress( value: CGFloat){
         progress = value
         self.trackLayer?.strokeEnd = 1 - progress
-        NSLog("%.f%%", progress * 100)
+        
     }
 
     func setup() {
@@ -38,7 +41,7 @@ class PDProgressView: UIView {
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
 
         let center: CGPoint = CGPoint.init(x: self.frame.size.width/2, y: self.frame.size.height/2)
-        let bezierPath: UIBezierPath = UIBezierPath.init(arcCenter: center, radius: (UIScreen.main.bounds.width - 150 - lineWidth) / 2, startAngle: CGFloat(-0.5 * Double.pi), endAngle: CGFloat(1.5 * Double.pi), clockwise: true)
+        let bezierPath: UIBezierPath = UIBezierPath.init(arcCenter: center, radius: self.radius!, startAngle: CGFloat(-0.5 * Double.pi), endAngle: CGFloat(1.5 * Double.pi), clockwise: true)
         shapeLayer.path = bezierPath.cgPath
         self.layer.addSublayer(shapeLayer)
 
@@ -47,7 +50,7 @@ class PDProgressView: UIView {
         self.trackLayer?.bounds = CGRect.init(x:0, y:0, width: self.frame.width, height: self.frame.height)
         self.trackLayer?.fillColor = UIColor.clear.cgColor
         self.trackLayer?.lineWidth = self.lineWidth
-        if timeService.timeChunks?[0].type == .work {
+        if !timeService.timeChunks.isEmpty && timeService.timeChunks?[0].type == .work {
             self.trackLayer?.strokeColor = UIColor.orange.cgColor
         }else{
             self.trackLayer?.strokeColor = UIColor.green.cgColor

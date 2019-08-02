@@ -20,6 +20,18 @@ class PDHeaderCell: UITableViewCell {
     
     func setup(){
         self.backgroundColor = .orange
+        self.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            ])
     }
+    var label: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = "Study Time For Each Subject:"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
 }

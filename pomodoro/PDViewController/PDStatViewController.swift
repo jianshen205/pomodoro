@@ -53,7 +53,6 @@ class PDStatViewController: UIViewController {
     
     lazy var barChartView : PDBarChartView = {
         let barChart = PDBarChartView()
-        barChart.frame = .zero
         return barChart
     }()
     
@@ -79,7 +78,7 @@ extension PDStatViewController: UITableViewDelegate, UITableViewDataSource{
             return PDTimeDisplayCell()
         }
         cell.primaryText.text = subject?.name
-        cell.secondaryText.text =  String(self.persistanceService.getSessionTimeOfSubject(subject: subject!) / 60)
+        cell.secondaryText.text =  String(format:"%d mins", self.persistanceService.getSessionTimeOfSubject(subject: subject!) / 60)
         
         return cell
     }

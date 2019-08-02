@@ -32,6 +32,9 @@ class PDTimerViewController: UIViewController{
         fatalError("init(coder:) has not been implemented")// what is adecoder, and why
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+      todayGoal.text = String(format: "TODAY: %d / %d", self.persistanceService.fetchDailyGoal().completedSession, defaults.getDailyGoal())
+    }
     
     /*
      set up origin view
@@ -40,7 +43,7 @@ class PDTimerViewController: UIViewController{
         self.navigationItem.title = "Timer"
         self.view.backgroundColor = .white
         
-        todayGoal.text = String(format: "TODAY: %d / %d", self.persistanceService.fetchDailyGoal().completedSession, defaults.getDailyGoal())
+        
         
         timerView = PDTimerView(frame: .zero)
         self.view.addSubview(timerView)
@@ -51,20 +54,22 @@ class PDTimerViewController: UIViewController{
             timerView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             timerView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             timerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            timerView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor),
-            timerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            timerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+            timerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+
             ])
        
         self.view.addSubview(pauseResumeButton)
         NSLayoutConstraint.activate([
+            pauseResumeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 100),
+            pauseResumeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -100),
+            pauseResumeButton.topAnchor.constraint(equalTo: self.timerView.progressView.bottomAnchor, constant: self.timerView.progressView.radius! + 50),
             pauseResumeButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            pauseResumeButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 40)
+           
             ])
         
         self.view.addSubview(todayGoal)
         NSLayoutConstraint.activate([
-            todayGoal.topAnchor.constraint(equalTo: pauseResumeButton.bottomAnchor),
+            todayGoal.topAnchor.constraint(equalTo: pauseResumeButton.bottomAnchor, constant: 30),
             todayGoal.centerXAnchor.constraint(equalTo: pauseResumeButton.centerXAnchor)
             ])
     }
@@ -75,6 +80,7 @@ class PDTimerViewController: UIViewController{
     var todayGoal: UILabel = {
         let daily = UILabel(frame: .zero)
         daily.textColor = .orange
+        daily.font = UIFont.preferredFont(forTextStyle: .title2)
         daily.translatesAutoresizingMaskIntoConstraints = false
         return daily
     }()
@@ -84,9 +90,12 @@ class PDTimerViewController: UIViewController{
     var pauseResumeButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.setTitle("start", for: .normal)
+        
         button.addTarget(self, action: #selector(pauseResume), for: .touchDown)
         button.backgroundColor = .orange
         button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.translatesAutoresizingMaskIntoConstraints = false;
         return button
     }()

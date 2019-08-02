@@ -40,6 +40,9 @@ class PDTimerService {
         let shorBreak = PDTimeChunk(type: .shortBreak, timeLength: defaults.getShortBreak(), timeRemaining: defaults.getShortBreak())
         let longBreak = PDTimeChunk(type: .LongBreak, timeLength: defaults.getLongBreak(), timeRemaining: defaults.getLongBreak())
         
+        if defaults.getDailyGoal() == 0{
+            return []
+        }
         for session in 1...defaults.getDailyGoal() {
             arr.append(work)
             arr.append( session % numberOfSessionsBeforeLongBreak == 0 ? longBreak:shorBreak)

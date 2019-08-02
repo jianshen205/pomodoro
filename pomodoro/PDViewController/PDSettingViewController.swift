@@ -30,10 +30,18 @@ class PDSettingViewController: UITableViewController {
     var hiddenRows: [Int] = [Int]()
     var shownPickerRow: Int?
     
+
     override func viewDidLoad() {
         self.navigationItem.title = "Setting"
         super.viewDidLoad()
         setLabelValue()
+        
+        self.view.isUserInteractionEnabled = true
+        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        view.addGestureRecognizer(tapGuesture)
+        tapGuesture.numberOfTapsRequired = 1
+        tapGuesture.delegate = self
+            
         workPicker.delegate = self
         shortBreakPicker.delegate = self
         longBreakPicker.delegate = self
@@ -48,9 +56,11 @@ class PDSettingViewController: UITableViewController {
         pickerData = generateData(min: 1, max: 60)
         dailyGoalsData = generateData(min: 1, max: 30)
         hiddenRows = [1,3,5,7]
-
-   
+        
+        
+        
     }
+
     private func generateData(min: Int, max: Int) -> [Int] {
         var array: [Int] = [Int]()
         for number in min...max {
@@ -87,6 +97,7 @@ class PDSettingViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.beginUpdates()
+        //if click on the row whose pickerview is already opened
         if hiddenRows.count == 3 && shownPickerRow == indexPath.row + 1{
             hiddenRows = [1,3,5,7]
             shownPickerRow = nil
@@ -96,7 +107,38 @@ class PDSettingViewController: UITableViewController {
             shownPickerRow = hiddenRows[indexPath.row/2]
             hiddenRows.remove(at: indexPath.row/2)
         }
+        switch shownPickerRow {
+        case 1:
+            workPicker.selectRow(defaults.getWorkLength() / 60 - 1, inComponent: 0, animated: false)
+        case 3:
+            shortBreakPicker.selectRow(defaults.getShortBreak() / 60 - 1, inComponent: 0, animated: false)
+        case 5:
+            longBreakPicker.selectRow(defaults.getLongBreak() / 60 - 1, inComponent: 0, animated: false)
+        case 7:
+            dailyGoalsPicker.selectRow(defaults.getDailyGoal() - 1, inComponent: 0, animated: false)
+        default:
+            break
+
+        }
         tableView.endUpdates()
+    }
+    
+}
+
+extension PDSettingViewController: UIGestureRecognizerDelegate{
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
+        if (touch.view?.isKind(of: UITableView.self))! {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    @objc func viewTapped() {
+        tableView.performBatchUpdates({
+            hiddenRows = [1,3,5,7]
+            shownPickerRow = nil
+        }, completion: nil)
     }
 }
 

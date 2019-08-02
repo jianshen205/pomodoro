@@ -39,8 +39,8 @@ class PDBarChartHeaderCell: UICollectionViewCell  {
         label.textColor = .white
         label.textAlignment = .center
         
-        let customFont = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: customFont)
+//        let customFont = UIFont.systemFont(ofSize: 16, weight: .bold)
+//        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
         
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,8 +52,8 @@ class PDBarChartHeaderCell: UICollectionViewCell  {
         label.textColor = .white
         label.textAlignment = .center
         
-        let customFont = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: customFont)
+//        let customFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+//        label.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
         
         label.translatesAutoresizingMaskIntoConstraints = false

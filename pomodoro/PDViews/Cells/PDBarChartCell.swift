@@ -38,8 +38,8 @@ class PDBarChartCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
 //            bar.topAnchor.constraint(equalTo: self.topAnchor),
             bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -10),
-            bar.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
-            bar.rightAnchor.constraint(equalTo: rightAnchor, constant: 0)
+            bar.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
+            bar.rightAnchor.constraint(equalTo: rightAnchor, constant: -5)
             ])
     }
     

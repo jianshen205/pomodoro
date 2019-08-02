@@ -25,14 +25,15 @@ class PDTimerView: UIView {
         
         NSLayoutConstraint.activate([
             progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            progressView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            progressView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -100)
             ])
         
         self.addSubview(timeDisplay)
         self.backgroundColor = .clear
         NSLayoutConstraint.activate([
-            timeDisplay.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            timeDisplay.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            timeDisplay.topAnchor.constraint(equalTo: self.topAnchor),
+            timeDisplay.centerXAnchor.constraint(equalTo: progressView.centerXAnchor),
+            timeDisplay.centerYAnchor.constraint(equalTo: progressView.centerYAnchor),
 
             ])
 
