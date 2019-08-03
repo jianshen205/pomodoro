@@ -1,4 +1,5 @@
 # pomodoro
+a pomodoro technique time management app that helps to keep productive.
 ## Features
   * Short and long break
 
