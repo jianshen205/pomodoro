@@ -1,6 +1,6 @@
-**# pomodoro**
+# pomodoro
 a pomodoro technique time management app that helps to keep productive.
-**## Features**
+## Features
   * Short and long break
 
   * Task-oriented timer
@@ -14,6 +14,6 @@ a pomodoro technique time management app that helps to keep productive.
 ## Demos
 
 <figure>
- <img src=demo/settings_demo.gif alt="configurable" width="200">
+ <img src=demo/settings_demo.gif alt="configurable" width="350">
  <figcaption>Configurable timers and daily goal</figcaption>
  </figure>
