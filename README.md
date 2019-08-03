@@ -1,5 +1,5 @@
 # pomodoro
-##Features
+## Features
 short and long break
 task-oriented timer
 tasks mangagement
