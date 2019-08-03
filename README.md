@@ -1,2 +1,2 @@
 # pomodoro
-![configurable timers and goals](demo/settings_demo.gif)
+![configurable timers and goals](demo/settings_demo.gif | width = 100)
