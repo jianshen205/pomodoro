@@ -1,15 +1,16 @@
 # pomodoro
 ## Features
-  * short and long break
+  * Short and long break
 
-  * task-oriented timer
+  * Task-oriented timer
 
-  * tasks mangagement
+  * Tasks mangagement
 
-  * configurabl work, short break and long break timers
+  * Configurabl work, short break and long break timers
 
-  * weekly statistics visualization
+  * Weekly statistics visualization
 
+## Demos
 
 <figure>
  <img src=demo/settings_demo.gif alt="configurable" width="200">
